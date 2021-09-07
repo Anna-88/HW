@@ -1,3 +1,5 @@
+import { students } from "./students";
+
 export default class  University{
     students = [];
     bestStudents = [];
@@ -7,34 +9,20 @@ export default class  University{
     
 
 addStudents (arrStudents){
-  arrStudents.forEach(student => {
-      if(student.ratingPoint >= 800){
-          let sum = student.ratingPoint + student.schoolPoint;
-          if(sum > 2000){
-              student.isisSelfPayment = false;
-              this.bestStudents.push(student);
-          }else{
-            this.students.push(student);
-          }
-      }else{
-          this.students.push(student);
-      }
-  });
-  
+ arrStudents.forEach(student => {
+     student.isSelfPayment = true;
+     this.students.push(student);
+ });
+   this.students.sort(function(x,y){
+    return y.ratingPoint - x.schoolPoint;
+   });
+   this.bestStudents = this.students.slice(0, 5);
+   this.bestStudents.forEach(student => student.isSelfPayment = false);
 };
 
 addStudent(student){
-    if(student.ratingPoint >= 800){
-        let sum = student.ratingPoint + student.schoolPoint;
-        if(sum > 2000  ){
-            student.isisSelfPayment = false;
-            this.bestStudents.push(student);
-        }else{
-            this.students.push(student); 
-        }
-    }else{
-        this.students.push(student);
-    }
+  this.students.push(student);
+  this.bestStudents = this.students.slice(0, 5);
 };
 
 getAllStdudents(){

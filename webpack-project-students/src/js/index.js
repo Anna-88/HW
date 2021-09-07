@@ -11,6 +11,8 @@ function main () {
     console.log(student);
     console.log(Students.id);
     university.addStudent(student);
+    let student2 = new Students(students[1]);
+    university.addStudent(student2);
 
     console.group(university);
 }
