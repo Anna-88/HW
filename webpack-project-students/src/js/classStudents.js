@@ -1,3 +1,4 @@
+import { students } from "./students";
 
 function addId(){
     let counter = 1;
